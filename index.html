@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Agent Chat</title>
+    <!-- 동글동글 귀여운 폰트 (Jua, Gowun Dodum) 로드 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Jua&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Voltagent 디자인 시스템 토큰 적용 */
+            --primary: #00d992;          /* Electric Green */
+            --primary-soft: #2fd6a1;
+            --canvas: #101010;           /* Near-black Canvas */
+            --canvas-soft: #1a1a1a;
+            --hairline: #3d3a39;         /* 1px Solid Border */
+            --ink: #f2f2f2;
+            --mute: #8b949e;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--canvas);
+            color: var(--ink);
+            font-family: 'Gowun Dodum', sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* 상단 헤더 영역 */
+        header {
+            background-color: var(--canvas);
+            border-bottom: 1px solid var(--hairline);
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #ffffff;
+            font-family: 'Jua', sans-serif; /* 귀여운 타이틀 폰트 */
+            letter-spacing: 0.5px;
+        }
+
+        /* Voltagent 시그니처 필 태그 */
+        .status-pill {
+            background-color: var(--canvas-soft);
+            color: var(--primary);
+            border: 1px solid var(--hairline);
+            padding: 4px 12px;
+            border-radius: 9999px; /* rounded.pill */
+            font-size: 13px;
+            font-family: 'Jua', sans-serif;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--primary);
+            border-radius: 50%;
+        }
+
+        /* 메인 임베드 프레임 영역 */
+        main {
+            flex: 1;
+            padding: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: calc(100vh - 60px);
+        }
+
+        .chat-card {
+            width: 100%;
+            max-width: 1200px;
+            height: 100%;
+            background-color: var(--canvas);
+            border: 1px solid var(--hairline); /* card-feature 스타일 */
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(0, 217, 146, 0.08); /* 인셋 은은한 녹색 글레이즈 */
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="brand-area">
+            <span class="brand-title">⚡ AI Copilot Agent</span>
+        </div>
+        <div class="status-pill">
+            <span class="status-dot"></span>
+            LIVE
+        </div>
+    </header>
+    <main>
+        <div class="chat-card">
+            <iframe src="https://copilotstudio.microsoft.com/environments/9324e73a-cd4e-e049-b7ba-177af6165e9c/bots/crbf2_agent1_nGJFxB/webchat?__version__=2&enableFileAttachment=false&cliAgent=true" frameborder="0"></iframe>
+        </div>
+    </main>
+</body>
+</html>
