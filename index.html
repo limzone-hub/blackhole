@@ -3,20 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Agent Chat</title>
-    <!-- 동글동글 귀여운 폰트 (Jua, Gowun Dodum) 로드 -->
+    <title>용돈 탐정 사무소 - AI Agent</title>
+    <!-- 동글동글 귀여운 폰트 로드 (Jua, Gowun Dodum) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Jua&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Voltagent 디자인 시스템 토큰 적용 */
-            --primary: #00d992;          /* Electric Green */
+            --primary: #00d992;          /* Voltagent Electric Green */
             --primary-soft: #2fd6a1;
-            --canvas: #101010;           /* Near-black Canvas */
+            --canvas: #101010;           /* Background */
+            --canvas-card: #161616;
             --canvas-soft: #1a1a1a;
-            --hairline: #3d3a39;         /* 1px Solid Border */
+            --hairline: #3d3a39;         /* Border Color */
             --ink: #f2f2f2;
+            --body-text: #bdbdbd;
             --mute: #8b949e;
         }
 
@@ -30,99 +31,387 @@
             background-color: var(--canvas);
             color: var(--ink);
             font-family: 'Gowun Dodum', sans-serif;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            overflow: hidden;
+            overflow-x: hidden;
         }
 
-        /* 상단 헤더 영역 */
+        /* GITHUB / HEADER BAR */
         header {
             background-color: var(--canvas);
             border-bottom: 1px solid var(--hairline);
-            padding: 14px 24px;
+            padding: 12px 24px;
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
 
-        .brand-area {
+        .header-title {
+            font-family: 'Jua', sans-serif;
+            font-size: 18px;
+            color: #fff;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
 
-        .brand-title {
-            font-size: 20px;
-            font-weight: bold;
-            color: #ffffff;
-            font-family: 'Jua', sans-serif; /* 귀여운 타이틀 폰트 */
-            letter-spacing: 0.5px;
-        }
-
-        /* Voltagent 시그니처 필 태그 */
-        .status-pill {
+        .header-pill {
             background-color: var(--canvas-soft);
-            color: var(--primary);
+            color: var(--mute);
             border: 1px solid var(--hairline);
             padding: 4px 12px;
-            border-radius: 9999px; /* rounded.pill */
+            border-radius: 9999px;
             font-size: 13px;
-            font-family: 'Jua', sans-serif;
-            display: inline-flex;
+            display: flex;
             align-items: center;
             gap: 6px;
         }
 
         .status-dot {
-            width: 8px;
-            height: 8px;
+            width: 7px;
+            height: 7px;
             background-color: var(--primary);
             border-radius: 50%;
         }
 
-        /* 메인 임베드 프레임 영역 */
-        main {
-            flex: 1;
-            padding: 16px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: calc(100vh - 60px);
-        }
-
-        .chat-card {
+        /* MAIN CONTAINER (2 COLUMN LAYOUT) */
+        .main-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 20px 24px;
+            max-width: 1600px;
+            margin: 0 auto;
             width: 100%;
-            max-width: 1200px;
-            height: 100%;
-            background-color: var(--canvas);
-            border: 1px solid var(--hairline); /* card-feature 스타일 */
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 0 15px rgba(0, 217, 146, 0.08); /* 인셋 은은한 녹색 글레이즈 */
+            flex: 1;
         }
 
-        iframe {
+        @media (max-width: 1024px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* LEFT PANEL */
+        .left-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .eyebrow {
+            color: var(--primary);
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+
+        .hero-title {
+            font-family: 'Jua', sans-serif;
+            font-size: 42px;
+            line-height: 1.15;
+            margin-top: -6px;
+        }
+
+        .hero-title .accent {
+            color: var(--primary);
+            display: block;
+        }
+
+        .hero-desc {
+            color: var(--body-text);
+            font-size: 15px;
+            line-height: 1.5;
+            margin-top: -6px;
+        }
+
+        /* MODE CARDS GRID (2x3) */
+        .mode-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .mode-card {
+            background-color: var(--canvas-card);
+            border: 1px solid var(--hairline);
+            border-radius: 8px;
+            padding: 12px 14px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .mode-num {
+            background-color: #0d281e;
+            color: var(--primary);
+            font-family: 'Jua', sans-serif;
+            font-size: 13px;
+            padding: 2px 8px;
+            border-radius: 4px;
+            border: 1px solid rgba(0, 217, 146, 0.3);
+            white-space: nowrap;
+        }
+
+        .mode-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .mode-title {
+            font-family: 'Jua', sans-serif;
+            font-size: 15px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .mode-sub {
+            font-size: 12px;
+            color: var(--mute);
+            line-height: 1.35;
+        }
+
+        /* DETECTIVE GRAPHIC BANNER (CASE #001) */
+        .detective-banner {
+            background-color: var(--canvas-card);
+            border: 1px solid var(--hairline);
+            border-radius: 10px;
+            padding: 16px 20px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 170px;
+        }
+
+        .case-tag {
+            color: var(--primary);
+            font-family: 'Jua', sans-serif;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            z-index: 2;
+        }
+
+        .graphic-stage {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            z-index: 2;
+            margin-top: 10px;
+        }
+
+        .math-badge {
+            background-color: rgba(0, 217, 146, 0.1);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            font-family: 'Jua', sans-serif;
+            font-size: 12px;
+            padding: 3px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            margin-top: 4px;
+        }
+
+        /* RIGHT PANEL - CHATBOT EMBED */
+        .right-panel {
+            background-color: var(--canvas-card);
+            border: 1px solid var(--hairline);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            height: calc(100vh - 100px);
+            min-height: 600px;
+        }
+
+        .chat-header {
+            background-color: #0b251e;
+            color: #fff;
+            padding: 12px 18px;
+            font-family: 'Jua', sans-serif;
+            font-size: 16px;
+            border-bottom: 1px solid var(--hairline);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .chat-iframe-wrapper {
+            flex: 1;
+            width: 100%;
+            height: 100%;
+        }
+
+        .chat-iframe-wrapper iframe {
             width: 100%;
             height: 100%;
             border: 0;
         }
+
+        /* FOOTER BRANDING */
+        footer {
+            text-align: center;
+            padding: 12px;
+            color: var(--mute);
+            font-size: 12px;
+            border-top: 1px solid var(--hairline);
+        }
     </style>
 </head>
 <body>
+
+    <!-- TOP HEADER BAR -->
     <header>
-        <div class="brand-area">
-            <span class="brand-title">⚡ AI Copilot Agent</span>
+        <div class="header-title">
+            🔍 용돈 탐정 사무소
         </div>
-        <div class="status-pill">
-            <span class="status-dot"></span>
-            LIVE
+        <div class="header-pill">
+            <span class="status-dot"></span> Microsoft Copilot
         </div>
     </header>
-    <main>
-        <div class="chat-card">
-            <iframe src="https://copilotstudio.microsoft.com/environments/9324e73a-cd4e-e049-b7ba-177af6165e9c/bots/crbf2_agent1_nGJFxB/webchat?__version__=2&enableFileAttachment=false&cliAgent=true" frameborder="0"></iframe>
+
+    <!-- MAIN TWO COLUMN LAYOUT -->
+    <div class="main-container">
+
+        <!-- LEFT PANEL: PROJECT INFO & DETECTIVE GRAPHICS -->
+        <div class="left-panel">
+            <div>
+                <div class="eyebrow">— AI AGENT</div>
+                <h1 class="hero-title">
+                    <span class="accent">용돈 탐정 사무소</span>
+                    사건을 해결해보요!
+                </h1>
+                <p class="hero-desc">
+                    용돈 데이터를 수학으로 분석하고, 기술·가정으로 소비습관을 돌아보는 탐정 프로젝트
+                </p>
+            </div>
+
+            <!-- 6 MODES GRID -->
+            <div class="mode-grid">
+                <div class="mode-card">
+                    <span class="mode-num">01</span>
+                    <div class="mode-info">
+                        <div class="mode-title">📂 모드1 사건 접수</div>
+                        <div class="mode-sub">소비 기록에서 단서를 찾습니다.</div>
+                    </div>
+                </div>
+
+                <div class="mode-card">
+                    <span class="mode-num">02</span>
+                    <div class="mode-info">
+                        <div class="mode-title">🔎 모드2 현장 검증</div>
+                        <div class="mode-sub">대푯값을 예측하고 비교합니다.</div>
+                    </div>
+                </div>
+
+                <div class="mode-card">
+                    <span class="mode-num">03</span>
+                    <div class="mode-info">
+                        <div class="mode-title">⚖️ 모드3 법정 공방</div>
+                        <div class="mode-sub">결론에 대한 반론을 검토합니다.</div>
+                    </div>
+                </div>
+
+                <div class="mode-card">
+                    <span class="mode-num">04</span>
+                    <div class="mode-info">
+                        <div class="mode-title">📜 모드4 판결 집행</div>
+                        <div class="mode-sub">소비 문제 해결 계획을 점검합니다.</div>
+                    </div>
+                </div>
+
+                <div class="mode-card">
+                    <span class="mode-num">05</span>
+                    <div class="mode-info">
+                        <div class="mode-title">🎯 모드5 소비습관 계획</div>
+                        <div class="mode-sub">나만의 소비습관 작전을 세웁니다.</div>
+                    </div>
+                </div>
+
+                <div class="mode-card">
+                    <span class="mode-num">06</span>
+                    <div class="mode-info">
+                        <div class="mode-title">🗄️ 모드6 사건 기록 보관소</div>
+                        <div class="mode-sub">소비 기록을 용돈기입장에 저장합니다.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DETECTIVE + MONEY + MATH SYMBOLS BANNER -->
+            <div class="detective-banner">
+                <div class="case-tag">
+                    CASE #001 · 용돈의 비밀을 찾아라!
+                    <div class="math-badge">수학 단원: 대푯값 (평균 · 중앙값 · 최빈값)</div>
+                </div>
+
+                <div class="graphic-stage">
+                    <!-- DETECTIVE AVATAR & MAGNIFYING GLASS -->
+                    <svg width="150" height="90" viewBox="0 0 150 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Detective Body & Hat -->
+                        <path d="M30 85 C30 65 70 65 70 85 Z" fill="#3d3a39"/>
+                        <circle cx="50" cy="52" r="22" fill="#ffdfc4"/> <!-- Face -->
+                        <!-- Detective Hat -->
+                        <path d="M22 45 C22 30 78 30 78 45 Z" fill="#8c6239"/>
+                        <rect x="20" y="42" width="60" height="6" rx="3" fill="#603813"/>
+                        <path d="M40 30 Q50 20 60 30" stroke="#00d992" stroke-width="3" fill="none"/>
+                        <!-- Eyes & Cute Blush -->
+                        <circle cx="42" cy="52" r="3" fill="#222"/>
+                        <circle cx="58" cy="52" r="3" fill="#222"/>
+                        <circle cx="37" cy="56" r="3" fill="#ff9999" opacity="0.6"/>
+                        <circle cx="63" cy="56" r="3" fill="#ff9999" opacity="0.6"/>
+                        <path d="M48 58 Q50 61 52 58" stroke="#222" stroke-width="2" stroke-linecap="round" fill="none"/>
+                        <!-- Glowing Magnifying Glass -->
+                        <circle cx="78" cy="62" r="14" fill="rgba(0, 217, 146, 0.25)" stroke="#00d992" stroke-width="3"/>
+                        <line x1="88" y1="72" x2="102" y2="84" stroke="#8c6239" stroke-width="5" stroke-linecap="round"/>
+                        <text x="73" y="67" font-family="Jua" font-size="12" fill="#00d992">=</text>
+                    </svg>
+
+                    <!-- MONEY, COINS & MATH SYMBOLS -->
+                    <svg width="220" height="85" viewBox="0 0 220 85" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Won Coin (₩) -->
+                        <circle cx="35" cy="45" r="16" fill="#f39c12" stroke="#f1c40f" stroke-width="2"/>
+                        <text x="29" y="51" font-family="Jua" font-size="15" fill="#fff" font-weight="bold">₩</text>
+
+                        <!-- Dollar Coin ($) -->
+                        <circle cx="75" cy="58" r="14" fill="#f1c40f" stroke="#e67e22" stroke-width="2"/>
+                        <text x="70" y="63" font-family="Jua" font-size="14" fill="#101010" font-weight="bold">$</text>
+
+                        <!-- Money Bag -->
+                        <path d="M125 65 C115 65 110 45 120 38 C125 35 135 35 140 38 C150 45 145 65 135 65 Z" fill="#27ae60"/>
+                        <rect x="124" y="36" width="12" height="4" rx="2" fill="#f1c40f"/>
+                        <text x="126" y="54" font-family="Jua" font-size="11" fill="#fff">₩ $</text>
+
+                        <!-- Math Formula Elements -->
+                        <text x="10" y="22" font-family="Jua" font-size="14" fill="#00d992">÷ + ×</text>
+                        <text x="85" y="25" font-family="Jua" font-size="13" fill="#2fd6a1">x̄ (평균)</text>
+                        <text x="155" y="42" font-family="Jua" font-size="14" fill="#00d992">x² + y²</text>
+                        <text x="160" y="68" font-family="Jua" font-size="12" fill="#f1c40f">%</text>
+                    </svg>
+                </div>
+            </div>
         </div>
-    </main>
+
+        <!-- RIGHT PANEL: COPILOT CHATBOT EMBED -->
+        <div class="right-panel">
+            <div class="chat-header">
+                <span>🤖 용돈 탐정 사무소</span>
+            </div>
+            <div class="chat-iframe-wrapper">
+                <iframe src="https://copilotstudio.microsoft.com/environments/9324e73a-cd4e-e049-b7ba-177af6165e9c/bots/crbf2_agent1_nGJFxB/webchat?__version__=2&enableFileAttachment=false&cliAgent=true"></iframe>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        AI와 함께 용돈의 비밀을 찾아보세요 🔎
+    </footer>
+
 </body>
 </html>
