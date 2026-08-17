@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" style="height: 100%;">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,7 +37,7 @@
             overflow-x: hidden;
         }
 
-        /* GITHUB / HEADER BAR */
+        /* HEADER BAR */
         header {
             background-color: var(--canvas);
             border-bottom: 1px solid var(--hairline);
@@ -109,9 +109,9 @@
 
         .hero-title {
             font-family: 'Jua', sans-serif;
-            font-size: 42px;
+            font-size: 40px;
             line-height: 1.15;
-            margin-top: -6px;
+            margin-top: -4px;
         }
 
         .hero-title .accent {
@@ -123,7 +123,7 @@
             color: var(--body-text);
             font-size: 15px;
             line-height: 1.5;
-            margin-top: -6px;
+            margin-top: -4px;
         }
 
         /* MODE CARDS GRID (2x3) */
@@ -236,12 +236,6 @@
             height: 100%;
         }
 
-        .chat-iframe-wrapper iframe {
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
-
         /* FOOTER BRANDING */
         footer {
             text-align: center;
@@ -276,7 +270,7 @@
                     사건을 해결해 봐요!
                 </h1>
                 <p class="hero-desc">
-                    용돈 데이터를 수학적으로 분석하고, 기술·가정을 통해 소비습관을 돌아보는 탐정 프로젝트
+                    용돈 데이터를 수학으로 분석하고, 기술·가정으로 소비습관을 돌아보는 탐정 프로젝트
                 </p>
             </div>
 
@@ -331,16 +325,15 @@
                 </div>
             </div>
 
-            <!-- DETECTIVE DUO & MONEY/MATH GRAPHIC STAGE -->
+            <!-- DETECTIVE DUO & MONEY/MATH GRAPHIC BANNER -->
             <div class="detective-banner">
                 <div class="case-tag">
                     CASE #001 · 용돈의 비밀을 찾아라!
                 </div>
 
                 <div class="graphic-stage">
-                    <!-- 외부 이미지 파일 없이 HTML에 완전 내장된 남1 여1 탐정 및 화폐/수학 SVG -->
                     <svg viewBox="0 0 540 120" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; max-height: 135px;">
-                        <!-- 남학생 탐정 (Boy Detective) -->
+                        <!-- 남학생 탐정 -->
                         <g id="boy-detective" transform="translate(5, 5)">
                             <path d="M 15 110 L 22 65 C 22 55, 58 55, 58 65 L 65 110 Z" fill="#cba37a"/>
                             <path d="M 28 65 L 40 85 L 32 110 Z" fill="#9d754f"/>
@@ -357,12 +350,11 @@
                             <path d="M 18 32 C 18 16, 62 16, 62 32 Z" fill="#7a5230"/>
                             <path d="M 12 32 Q 40 28 68 32 C 68 35, 12 35, 12 32 Z" fill="#593b22"/>
                             <path d="M 36 16 L 44 16 L 40 24 Z" fill="#593b22"/>
-                            <!-- 돋보기 -->
                             <circle cx="16" cy="65" r="10" fill="rgba(0,217,146,0.2)" stroke="#00d992" stroke-width="2.5"/>
                             <line x1="23" y1="72" x2="30" y2="80" stroke="#7a5230" stroke-width="3.5" stroke-linecap="round"/>
                         </g>
 
-                        <!-- 여학생 탐정 (Girl Detective) -->
+                        <!-- 여학생 탐정 -->
                         <g id="girl-detective" transform="translate(75, 5)">
                             <path d="M 20 40 C 15 65, 15 85, 25 95 L 55 95 C 65 85, 65 65, 60 40 Z" fill="#593b22"/>
                             <path d="M 18 110 L 24 65 C 24 55, 56 55, 56 65 L 62 110 Z" fill="#cba37a"/>
@@ -377,7 +369,6 @@
                             <path d="M 37 49 Q 40 52 43 49" stroke="#222" stroke-width="1.8" stroke-linecap="round" fill="none"/>
                             <circle cx="30" cy="46" r="3" fill="#ff9999" opacity="0.6"/>
                             <circle cx="50" cy="46" r="3" fill="#ff9999" opacity="0.6"/>
-                            <!-- 태블릿 -->
                             <rect x="52" y="60" width="22" height="32" rx="3" fill="#2c3e50" stroke="#7f8c8d" stroke-width="1.5"/>
                             <rect x="55" y="63" width="16" height="22" rx="1" fill="#ecf0f1"/>
                             <rect x="57" y="75" width="3" height="8" fill="#e74c3c"/>
@@ -385,30 +376,26 @@
                             <rect x="65" y="67" width="3" height="16" fill="#2ecc71"/>
                         </g>
 
-                        <!-- 파란색 영역: 지폐, 동전, 돈주머니 그래픽 -->
+                        <!-- 중앙 화폐 및 동전 -->
                         <g id="currency" transform="translate(170, 10)">
-                            <!-- ₩ 지폐 -->
                             <g transform="translate(10, 25) rotate(-6)">
                                 <rect x="0" y="0" width="55" height="30" rx="4" fill="#2fd6a1" stroke="#00d992" stroke-width="1.5"/>
                                 <rect x="4" y="3" width="47" height="24" rx="2" fill="none" stroke="#ffffff" stroke-width="0.8" stroke-dasharray="2 2" opacity="0.7"/>
                                 <circle cx="27.5" cy="15" r="7" fill="#101010" opacity="0.15"/>
                                 <text x="27.5" y="19.5" text-anchor="middle" font-family="Jua, sans-serif" font-size="12" fill="#ffffff" font-weight="bold">₩</text>
                             </g>
-                            <!-- ₩ 동전 -->
                             <g transform="translate(78, 50)">
                                 <circle cx="0" cy="0" r="16" fill="#f39c12" stroke="#d35400" stroke-width="1"/>
                                 <circle cx="0" cy="0" r="13" fill="#f1c40f"/>
                                 <circle cx="-4" cy="-4" r="2.5" fill="#ffffff" opacity="0.8"/>
                                 <text x="0" y="4" text-anchor="middle" font-family="Jua, sans-serif" font-size="12" fill="#2c3e50" font-weight="bold">₩</text>
                             </g>
-                            <!-- $ 동전 -->
                             <g transform="translate(58, 76)">
                                 <circle cx="0" cy="0" r="13" fill="#e67e22" stroke="#d35400" stroke-width="1"/>
                                 <circle cx="0" cy="0" r="10" fill="#f1c40f"/>
                                 <circle cx="-3" cy="-3" r="2" fill="#ffffff" opacity="0.8"/>
                                 <text x="0" y="3.5" text-anchor="middle" font-family="Jua, sans-serif" font-size="10" fill="#2c3e50" font-weight="bold">$</text>
                             </g>
-                            <!-- 돈주머니 -->
                             <g transform="translate(112, 42)">
                                 <path d="M 10 30 C -10 30 -14 10 2 -2 C 8 -8 24 -8 30 -2 C 46 10 42 30 22 30 Z" fill="#27ae60"/>
                                 <rect x="7" y="-6" width="18" height="5" rx="2.5" fill="#f1c40f"/>
@@ -417,12 +404,11 @@
                                 <path d="M 13 16 Q 16 19 19 16" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" fill="none"/>
                                 <text x="16" y="26" text-anchor="middle" font-family="Jua, sans-serif" font-size="10" fill="#ffffff" font-weight="bold">₩$</text>
                             </g>
-                            <!-- 반짝이 -->
                             <path d="M 40 10 L 42 16 L 48 18 L 42 20 L 40 26 L 38 20 L 32 18 L 38 16 Z" fill="#f1c40f"/>
                             <path d="M 100 22 L 101.5 26 L 105.5 27.5 L 101.5 29 L 100 33 L 98.5 29 L 94.5 27.5 L 98.5 26 Z" fill="#00d992"/>
                         </g>
 
-                        <!-- 우측 영역: 수학 기호 (평균 글씨 삭제됨) -->
+                        <!-- 우측 수학 기호 영역 (평균 및 단원 글씨 완전제거) -->
                         <g id="math-symbols" transform="translate(345, 10)">
                             <text x="10" y="35" font-family="Jua, sans-serif" font-size="18" fill="#00d992">÷ + ×</text>
                             <text x="95" y="36" font-family="Jua, sans-serif" font-size="20" fill="#2fd6a1">x̄</text>
@@ -434,13 +420,13 @@
             </div>
         </div>
 
-        <!-- RIGHT PANEL: COPILOT CHATBOT EMBED -->
+        <!-- RIGHT PANEL: COPILOT CHATBOT EMBED (요청하신 iframe 적용) -->
         <div class="right-panel">
             <div class="chat-header">
                 <span>🤖 용돈 탐정 사무소</span>
             </div>
             <div class="chat-iframe-wrapper">
-                <iframe src="https://copilotstudio.microsoft.com/environments/9324e73a-cd4e-e049-b7ba-177af6165e9c/bots/crbf2_agent1_nGJFxB/webchat?__version__=2&enableFileAttachment=false&cliAgent=true"></iframe>
+                <iframe src="https://copilotstudio.microsoft.com/environments/9324e73a-cd4e-e049-b7ba-177af6165e9c/bots/crbf2_agent1_nGJFxB/webchat?__version__=2&enableFileAttachment=false&cliAgent=true" frameborder="0" style="width: 100%; height: 100%; border: 0;"></iframe>
             </div>
         </div>
 
